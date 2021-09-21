@@ -6,7 +6,7 @@ import java.util.List;
 import com.electronwill.nightconfig.core.conversion.PreserveNotNull;
 import com.electronwill.nightconfig.core.conversion.SpecDoubleInRange;
 
-import xyz.reselim.breadcrumbs.ui.UIBreadcrumbGroup.Anchor;
+import xyz.reselim.breadcrumbs.ui.Anchor;
 
 public final class ConfigGroup {
 	@SpecDoubleInRange(min = 0, max = 1)

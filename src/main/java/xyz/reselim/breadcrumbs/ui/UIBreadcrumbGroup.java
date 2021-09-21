@@ -76,8 +76,8 @@ public final class UIBreadcrumbGroup {
 	// Positioning
 
 	private void updatePosition() {
-		object.setX(new AdditiveConstraint(new RelativeConstraint(x), new PixelConstraint(0f, false, anchor.flipX)));
-		object.setY(new AdditiveConstraint(new RelativeConstraint(y), new PixelConstraint(0f, false, anchor.flipY)));
+		object.setX(new AdditiveConstraint(new RelativeConstraint(x), anchor.x.getConstraint()));
+		object.setY(new AdditiveConstraint(new RelativeConstraint(y), anchor.y.getConstraint()));
 	}
 
 	public void setAnchor(Anchor newAnchor) {
@@ -91,20 +91,5 @@ public final class UIBreadcrumbGroup {
 		System.out.println(newX);
 		System.out.println(newY);
 		updatePosition();
-	}
-
-	public enum Anchor {
-		TOP_LEFT(false, false),
-		TOP_RIGHT(true, false),
-		BOTTOM_LEFT(false, true),
-		BOTTOM_RIGHT(true, true);
-
-		public boolean flipX;
-		public boolean flipY;
-
-		Anchor(boolean flipX, boolean flipY) {
-			this.flipX = flipX;
-			this.flipY = flipY;
-		}
 	}
 }
