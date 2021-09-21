@@ -1,5 +1,8 @@
 package xyz.reselim.breadcrumbs.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gg.essential.elementa.components.UIContainer;
 import gg.essential.elementa.components.Window;
 import gg.essential.elementa.constraints.RelativeWindowConstraint;
@@ -7,10 +10,12 @@ import xyz.reselim.breadcrumbs.config.Config;
 import xyz.reselim.breadcrumbs.config.ConfigGroup;
 
 public final class UIBreadcrumbWindow {
+	private List<UIBreadcrumbGroup> groups = new ArrayList<>();
+
 	private final Window window;
 	public final UIContainer object;
 
-	public UIBreadcrumbWindow() {
+	private UIBreadcrumbWindow() {
 		window = new Window();
 
 		object = new UIContainer();
@@ -20,7 +25,13 @@ public final class UIBreadcrumbWindow {
 	}
 
 	public void add(UIBreadcrumbGroup group) {
+		groups.add(group);
 		group.object.setChildOf(object);
+	}
+
+	public void remove(UIBreadcrumbGroup group) {
+		groups.remove(group);
+		group.object.setChildOf(null);
 	}
 
 	public void draw() {
@@ -38,5 +49,15 @@ public final class UIBreadcrumbWindow {
 		}
 
 		return window;
+	}
+
+	public Config toConfig() {
+		Config config = new Config();
+
+		for (UIBreadcrumbGroup group : groups) {
+			config.groups.add(group.toConfig());
+		}
+
+		return config;
 	}
 }

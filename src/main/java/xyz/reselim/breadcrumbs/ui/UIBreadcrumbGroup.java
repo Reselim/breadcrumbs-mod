@@ -1,5 +1,8 @@
 package xyz.reselim.breadcrumbs.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gg.essential.elementa.components.UIContainer;
 import gg.essential.elementa.constraints.AdditiveConstraint;
 import gg.essential.elementa.constraints.CenterConstraint;
@@ -17,11 +20,12 @@ public final class UIBreadcrumbGroup {
 	private float x = 0;
 	private float y = 0;
 	private Anchor anchor = Anchor.TOP_LEFT;
+	private List<UIBreadcrumb> breadcrumbs = new ArrayList<>();
 
 	public final UIContainer object;
 	private final UIContainer container;
 
-	public UIBreadcrumbGroup() {
+	private UIBreadcrumbGroup() {
 		object = new UIContainer();
 		object.setWidth(new AdditiveConstraint(new ChildBasedSizeConstraint(), new PixelConstraint(PADDING)));
 		object.setHeight(new AdditiveConstraint(new ChildBasedSizeConstraint(), new PixelConstraint(PADDING)));
@@ -53,6 +57,20 @@ public final class UIBreadcrumbGroup {
 		}
 
 		return group;
+	}
+
+	public ConfigGroup toConfig() {
+		ConfigGroup config = new ConfigGroup();
+
+		config.x = (double) x;
+		config.y = (double) y;
+		config.anchor = anchor;
+
+		for (UIBreadcrumb breadcrumb : breadcrumbs) {
+			config.breadcrumbs.add(breadcrumb.toConfig());
+		}
+
+		return config;
 	}
 
 	// Positioning

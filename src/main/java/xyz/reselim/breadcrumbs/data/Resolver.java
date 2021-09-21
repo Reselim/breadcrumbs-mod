@@ -13,6 +13,8 @@ public final class Resolver {
 	}
 
 	public enum CustomizerType {
+		UNKNOWN,
+
 		SPEED,
 		COMBO,
 	}

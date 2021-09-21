@@ -19,15 +19,24 @@ import xyz.reselim.breadcrumbs.data.Customizer;
 public final class UIBreadcrumb {
 	private final static float PADDING = 4f;
 
+	private Customizer<?> customizer;
+
 	public final UIRoundedRectangle object;
 
+	private final State<String> textState;
 	private final UIRoundedRectangle labelContainer;
 	private final UIText label;
 
+	private final State<String> labelState;
 	private final UIContainer textContainer;
 	private final UIText text;
 
-	public UIBreadcrumb(State<String> labelState, State<String> textState) {
+	private UIBreadcrumb(State<String> initLabelState, Customizer<?> initCustomizer) {
+		customizer = initCustomizer;
+
+		labelState = initLabelState;
+		textState = customizer.state;
+
 		object = new UIRoundedRectangle(3f);
 		object.setComponentName("Breadcrumb");
 		object.setWidth(new ChildBasedSizeConstraint());
@@ -71,6 +80,15 @@ public final class UIBreadcrumb {
 
 	public static final UIBreadcrumb fromConfig(ConfigBreadcrumb breadcrumbConfig) {
 		Customizer<?> customizer = breadcrumbConfig.getCustomizer();
-		return new UIBreadcrumb(new BasicState<>(breadcrumbConfig.label), customizer.state);
+		return new UIBreadcrumb(new BasicState<>(breadcrumbConfig.label), customizer);
+	}
+
+	public ConfigBreadcrumb toConfig() {
+		ConfigBreadcrumb breadcrumbConfig = new ConfigBreadcrumb();
+
+		breadcrumbConfig.type = customizer.TYPE;
+		breadcrumbConfig.label = labelState.get();
+
+		return breadcrumbConfig;
 	}
 }
