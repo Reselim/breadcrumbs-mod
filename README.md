@@ -2,7 +2,7 @@
 
 Breadcrumb-like statistics UI for Minecraft 1.8.9.
 
-This mod requires Essential. It'll automatically be downloaded when you load up Minecraft for the first time.
+This mod requires [Essential](essential.gg). It'll automatically be downloaded when you load up Minecraft for the first time.
 
 ## Configuration
 
