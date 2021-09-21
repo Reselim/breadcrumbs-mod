@@ -1,0 +1,9 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "package": "xyz.reselim.breadcrumbs.mixin",
+  "refmap": "mixins.breadcrumbs.refmap.json",
+  "mixins": [
+    "NetHandlerPlayClientMixin"
+  ],
+  "verbose": true
+}
