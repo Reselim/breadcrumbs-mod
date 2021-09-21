@@ -88,8 +88,6 @@ public final class UIBreadcrumbGroup {
 	public void setPosition(float newX, float newY) {
 		x = newX;
 		y = newY;
-		System.out.println(newX);
-		System.out.println(newY);
 		updatePosition();
 	}
 }
