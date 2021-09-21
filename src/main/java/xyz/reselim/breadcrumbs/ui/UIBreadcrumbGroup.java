@@ -76,8 +76,8 @@ public final class UIBreadcrumbGroup {
 	// Positioning
 
 	private void updatePosition() {
-		object.setX(new AdditiveConstraint(new RelativeConstraint(x), anchor.x.getConstraint()));
-		object.setY(new AdditiveConstraint(new RelativeConstraint(y), anchor.y.getConstraint()));
+		object.setX(new AdditiveConstraint(new RelativeConstraint(x), anchor.getXConstraint()));
+		object.setY(new AdditiveConstraint(new RelativeConstraint(y), anchor.getYConstraint()));
 	}
 
 	public void setAnchor(Anchor newAnchor) {

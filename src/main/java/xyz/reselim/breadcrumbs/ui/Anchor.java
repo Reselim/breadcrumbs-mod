@@ -1,5 +1,7 @@
 package xyz.reselim.breadcrumbs.ui;
 
+import gg.essential.elementa.constraints.PositionConstraint;
+
 public enum Anchor {
 	TOP_LEFT(AxisAnchor.START, AxisAnchor.START),
 	TOP_MIDDLE(AxisAnchor.MIDDLE, AxisAnchor.START),
@@ -19,5 +21,13 @@ public enum Anchor {
 	Anchor(AxisAnchor initX, AxisAnchor initY) {
 		x = initX;
 		y = initY;
+	}
+
+	public PositionConstraint getXConstraint() {
+		return x.getConstraint();
+	}
+
+	public PositionConstraint getYConstraint() {
+		return y.getConstraint();
 	}
 }
